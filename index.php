@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="website icon" href="images/website icon.png">
     <link rel="stylesheet" href="style.css">
     <title>API-PHP-CURL</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -30,16 +31,9 @@
 
     $dados = buscarDados($json_url);
 
-    // Definir o número máximo de registros por página
     $registrosPorPagina = 10;
-
-    // Obter o número da página atual
     $paginaAtual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
-
-    // Calcular o deslocamento
     $deslocamento = ($paginaAtual - 1) * $registrosPorPagina;
-
-    // Obter os registros da página atual
     $registrosPagina = array_slice($dados, $deslocamento, $registrosPorPagina);
 
     if (!empty($registrosPagina)) {
@@ -59,7 +53,6 @@
         }
         echo "</table>";
 
-        // Criar links de paginação
         echo "<div class='table'>";
         $totalRegistros = count($dados);
         $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
